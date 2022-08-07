@@ -1,0 +1,23 @@
+language: generic
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t islandboy83/docker-book3 -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true islandboy83/docker-book3 npm test
+
+after_success:
+  - docker build -t islandboy83/book3-client ./client
+  - docker build -t islandboy83/book3-nginx ./nginx
+  - docker build -t islandboy83/book3-server ./server
+  - docker build -t islandboy83/book3-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push islandboy83/book3-client
+  - docker push islandboy83/book3-nginx
+  - docker push islandboy83/book3-server
+  - docker push islandboy83/book3-worker
+ 
