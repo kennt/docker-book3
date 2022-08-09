@@ -21,15 +21,15 @@ after_success:
   - docker push islandboy83/book3-server
   - docker push islandboy83/book3-worker
  
-deploy:
-  provider: elasticbeanstalk
-  region: 'us-west-1'
-  app: 'docker-book3'
-  env: 'Dockerbook3-env'
-  bucket_name: 'elasticbeanstalk-us-west-1-803156002903'
-  bucket_path: 'docker-book3'
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+#deploy:
+#  provider: elasticbeanstalk
+#  region: 'us-west-1'
+#  app: 'docker-book3'
+#  env: 'Dockerbook3-env'
+#  bucket_name: 'elasticbeanstalk-us-west-1-803156002903'
+#  bucket_path: 'docker-book3'
+#  on:
+#    branch: master
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key: $AWS_SECRET_KEY
 
